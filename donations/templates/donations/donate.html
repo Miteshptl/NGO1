@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Donate | NGO CMS{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="mb-4">Support Our Mission</h1>
+            <p>Your donation helps us continue our work and make a difference in the community.</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Donation Amount</label>
+                    <input type="number" class="form-control" id="amount" name="amount" min="1" required>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="is_anonymous" name="is_anonymous">
+                    <label class="form-check-label" for="is_anonymous">Donate Anonymously</label>
+                </div>
+                <button type="submit" class="btn btn-success">Donate</button>
+            </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success mt-3">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded shadow" alt="Donate NGO">
+        </div>
+    </div>
+</div>
+{% endblock %} 

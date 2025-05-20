@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title">Blog Posts</h1>
+            <p class="card-text">Explore our latest articles and updates.</p>
+            <ul class="list-group">
+                {% for post in posts %}
+                <li class="list-group-item">
+                    {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="img-thumbnail mb-2" style="max-width: 200px;">
+                    {% endif %}
+                    <h5><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h5>
+                    <p>{{ post.excerpt }}</p>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No posts available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} 

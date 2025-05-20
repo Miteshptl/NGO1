@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Profile | NGO CMS{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Your Profile</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                        {% if profile %}
+                            <li class="list-group-item"><strong>Phone:</strong> {{ profile.phone }}</li>
+                            <li class="list-group-item"><strong>Address:</strong> {{ profile.address }}</li>
+                            <li class="list-group-item"><strong>Bio:</strong> {{ profile.bio }}</li>
+                            <li class="list-group-item"><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

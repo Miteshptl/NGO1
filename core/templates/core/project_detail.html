@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} | Project Details{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Project Image">
+                <div class="card-body">
+                    <h2 class="card-title">{{ project.title }}</h2>
+                    <p class="card-text">{{ project.description }}</p>
+                    <p><strong>Start Date:</strong> {{ project.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ project.end_date }}</p>
+                    <p><strong>Status:</strong> {% if project.is_active %}Active{% else %}Completed{% endif %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

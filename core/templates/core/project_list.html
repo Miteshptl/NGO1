@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Projects | NGO CMS{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Our Projects</h1>
+    <div class="row">
+        {% if projects %}
+            {% for project in projects %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Project Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                        <a href="{% url 'core:project_detail' project.slug %}" class="btn btn-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <p class="lead">No projects found. Be the first to add one!</p>
+                <a href="{% url 'core:add_project' %}" class="btn btn-success">Add Project</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

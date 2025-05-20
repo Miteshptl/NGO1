@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title">Donation Campaigns</h1>
+            <p class="card-text">Support our causes by contributing to our active campaigns.</p>
+            <ul class="list-group">
+                {% for campaign in campaigns %}
+                <li class="list-group-item">
+                    <h5><a href="{% url 'donations:campaign_detail' campaign.pk %}">{{ campaign.title }}</a></h5>
+                    <p>{{ campaign.description }}</p>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No campaigns available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Home | NGO CMS{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Hero Section with Image -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4">Welcome to Our NGO</h1>
+            <p class="lead">Making a positive impact in our community through various initiatives and programs.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded shadow" alt="NGO Hero">
+        </div>
+    </div>
+    <!-- Projects Section -->
+    <h2 class="mb-4">Our Projects</h2>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Project Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Contact Section -->
+    <h2 class="mb-4 mt-5">Contact Us</h2>
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <form method="post" action="/contact/">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded shadow" alt="Contact NGO">
+        </div>
+    </div>
+</div>
+{% endblock %} 
